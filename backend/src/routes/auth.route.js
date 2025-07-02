@@ -11,4 +11,9 @@ authRoute.post('/logout', logout);
 
 authRoute.post("/onboarding", protectRoute, onboard);
 
+//check if user is logged in
+authRoute.get('/me', protectRoute, (req, res) => {
+    res.status(200).json({ success: true, user: req.user });
+});
+
 export default authRoute;
