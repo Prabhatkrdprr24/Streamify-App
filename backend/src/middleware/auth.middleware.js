@@ -23,7 +23,7 @@ const protectRoute = async (req, res, next) => {
         }
 
         req.user = user; // Attach user to request object
-        next()
+        next();
 
     }
     catch(error){
