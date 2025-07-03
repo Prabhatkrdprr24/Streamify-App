@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRoute);
-app.use('api/users', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/chat', chatRoutes);
 
 app.get('/', (req, res) => {

@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import NoFriendsFound from '../components/NoFriendsFound.jsx';
 import { CheckCircleIcon, MapPinIcon, UserPlusIcon, UsersIcon } from "lucide-react";
 import { capitialize } from '../lib/util.js';
+import  { getLanguageFlag } from "../components/FriendCard";
 
 
 const HomePage = () => {
@@ -170,3 +171,4 @@ const HomePage = () => {
 }
 
 export default HomePage
+
