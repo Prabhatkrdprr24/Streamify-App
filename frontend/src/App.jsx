@@ -15,19 +15,21 @@ import PageLoader from './components/PageLoader.jsx'
 import { getAuthUser } from './lib/api.js'
 import useAuthUser from './hooks/useAuthUser.js'
 import Layout from './components/Layout.jsx' // Assuming you have a Layout component
+import { useThemeStore } from './store/useThemeStore.js' // Assuming you have a Zustand store for theme
 
 
 const App = () => {
 
   const { isLoading, authUser } = useAuthUser();
+  const { theme, setTheme } = useThemeStore();
 
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
  
-  if(true) <PageLoader />
+  if( isLoading ) <PageLoader />
 
   return (
-    <div className='h-screen data-theme="dark" '>
+    <div className='h-screen' data-theme={theme}>
     
       <Routes>
 

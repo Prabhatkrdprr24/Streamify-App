@@ -5,6 +5,8 @@ import { logout } from "../lib/api.js"; // Adjust the import path as necessary
 import useAuthUser from "../hooks/useAuthUser.js"; // Custom hook for auth user
 import { BellIcon, LogOutIcon, ShipWheelIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector.jsx"; 
+import useLogout from "../hooks/useLogout.js"; // Custom hook for logout mutation
+
 
 
 const Navbar = () => {
@@ -13,13 +15,15 @@ const Navbar = () => {
     const location = useLocation();
     const isChatPage = location.pathname?.startsWith('/chat');
     
-    const queryClient = useQueryClient();
-    const { mutate: logoutMutation } = useMutation({
-        mutationFn: logout,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['authUser'] });
-        },
-    });
+    // const queryClient = useQueryClient();
+    // const { mutate: logoutMutation } = useMutation({
+    //     mutationFn: logout,
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries({ queryKey: ['authUser'] });
+    //     },
+    // });
+
+    const { logoutMutation } = useLogout();
 
     
     return (
