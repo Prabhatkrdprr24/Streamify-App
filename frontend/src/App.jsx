@@ -14,6 +14,7 @@ import { Navigate } from 'react-router-dom'
 import PageLoader from './components/PageLoader.jsx'
 import { getAuthUser } from './lib/api.js'
 import useAuthUser from './hooks/useAuthUser.js'
+import Layout from './components/Layout.jsx' // Assuming you have a Layout component
 
 
 const App = () => {
@@ -30,11 +31,18 @@ const App = () => {
     
       <Routes>
 
-        <Route path="/" element={isAuthenticated && isOnboarded ? (
-          <HomePage />
-        ) : (
+        <Route path="/" element={
+          isAuthenticated && isOnboarded 
+          ? (
+            <Layout showSidebar={true}>
+              <HomePage />
+            </Layout>
+          ) 
+          : (
           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
-        )} />
+          )} 
+
+        />
 
         <Route path="/login" element={
           !isAuthenticated ? <LoginPage /> : <Navigate to={isOnboarded ? "/" : "/onboarding"} />
@@ -43,7 +51,7 @@ const App = () => {
         <Route path="/signup" element={
           !isAuthenticated ? <SignUp /> : <Navigate to={isOnboarded ? "/" : "/onboarding"} />
           } />
-          
+
         <Route path="/notifications" element={isAuthenticated ? <NotificationsPage /> : <Navigate to='/login' />} />
         <Route path="/chat" element={isAuthenticated ? <ChatPage /> : <Navigate to='/login' />} />
         <Route path="/call" element={isAuthenticated ? <CallPage /> : <Navigate to='/login' />} />

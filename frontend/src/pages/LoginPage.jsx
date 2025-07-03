@@ -12,7 +12,7 @@ const LoginPage = () => {
     password: '',
   });
 
-  
+
 
     //this is how we did it first, without using custom hook
   // const queryClient = useQueryClient();
@@ -21,6 +21,8 @@ const LoginPage = () => {
   //     mutationFn: login,
   //     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['authUser'] }),
   // });
+
+  const { isPending, error, loginMutation } = useLogin(); // Using custom hook for login mutation
 
 
   const handleLogin = (e) => {
