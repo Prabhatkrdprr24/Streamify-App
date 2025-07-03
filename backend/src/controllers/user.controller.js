@@ -3,6 +3,8 @@ import FriendRequest from '../models/FriendRequest.js';
 
 const getRecommendedUsers = async (req, res) => {
 
+    console.log("getRecommendedUsers called");
+
     try{
 
         const currentUserId = req.user.id;
@@ -12,7 +14,7 @@ const getRecommendedUsers = async (req, res) => {
             $and: [
                 { _id: { $ne: currentUserId } }, // Exclude current user
                 { isOnboarded: true }, // Only include onboarded users]
-                {$id: {$nin: currentUser.friends}} // Exclude friends of the current user
+                {_id: {$nin: currentUser.friends}} // Exclude friends of the current user
             ]
         });
 
